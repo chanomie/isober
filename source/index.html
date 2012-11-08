@@ -33,6 +33,8 @@
             cookie     : true, // enable cookies to allow the server to access the session
             xfbml      : true  // parse XFBML
           });
+          
+          FB.Event.subscribe('auth.authResponseChange', facebookAuthChange);
         };
     
        (function(d, s, id) {
@@ -62,7 +64,7 @@
 	    <p><a class="blackRight button" href="#" onclick="document.getElementById('debugfields').style.display = ''; return false;">Debug</a></p>
 
 	    <div id="drinkother" class="popup" style="display: none;">
-	      <ul class="rounded" style="height: 300px;"><li>
+	      <ul class="rounded"><li>
           <p><a class="blackLeft button" href="#" onclick="document.getElementById('drinkother').style.display = 'none';">Back</a></p>
           <form id="drinkform" name="drinkform" action="#">
             <div>
@@ -79,7 +81,7 @@
                 <option value="booze" selected="selected">Booze</option>
                 <option value="beer">Beer</option>
                 <option value="wine">Wine</option>
-                <option value="Shot">Shot</option>
+                <option value="shot">Shot</option>
               </select>
             </div>
             <div>
@@ -88,17 +90,25 @@
             </div>
 	        <p><a class="blue button" href="#" onclick="adddrink();document.getElementById('drinkother').style.display = 'none'">Drink!</a></p>
           </form>
+          <div>
+          	<form id="photoform" enctype="multipart/form-data" action="https://graph.facebook.com/me/photos?access_token=" onsubmit="adddrink();updatePhotoMessage();document.getElementById('drinkother').style.display = 'none'" method="POST" target="photoiframe">
+          		
+          		<input id="photomessage" name="message" type="hidden" value="is this the message?" />
+          		<input name="source" type="file" />
+          		<input id="photuploadbutton" class="blue button" type="submit" value="Upload"/>
+            	</form>
+            </div>
           </li></ul>
         </div>
         
         <div id="facebook" class="popup" style="visibility: hidden;">
           <p><a class="blackLeft button" href="#" onclick="document.getElementById('facebook').style.visibility = 'hidden'">Get iSober</a></p>	
           <ul class="rounded"><li>
-            <fb:activity site="isober.chaosserver.net" app_id="485749798118743" action="isoberapp:drink" width="280" height="200" header="true" recommendations="false"></fb:activity>
+            <fb:activity site="isober.chaosserver.net" app_id="485749798118743" width="280" height="200" header="true" recommendations="false"></fb:activity>
           </li><li>
             <fb:like href="http://isober.chaosserver.net" send="false" width="300" show_faces="true" font="verdana"></fb:like>
           </li><li>
-          <fb:login-button show-faces="true" width="300" max-rows="20" scope="publish_actions"></fb:login-button>
+	          <fb:login-button show-faces="true" width="300" max-rows="20" scope="publish_actions"></fb:login-button>
           </li><li>
             <form id="facebookform" name="facebookform" action="#">
               <a class="blue" onclick="togglePostFacebook(); saveFacebook();" href="#">
@@ -157,5 +167,7 @@
 	        <p><a class="blue button" href="#" onclick="sober();">I'm Sober!</a></p>
 	      </li></ul>
 	    </div>
+	    
+	    <iframe width="0" id=”photoiframe” name="photoiframe" height="0" border="0" frameborder="0" scrolling="auto" align="center" hspace="0" vspace=""></iframe>
   </body>
 </html>

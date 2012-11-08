@@ -1,5 +1,6 @@
 var totalConsumed = 0;
 var startTime;
+var authToken;
 
 // Configurations
 var weight = 160;
@@ -127,29 +128,47 @@ function drink(amount, drinktype, drinkname) {
   createCookie("totalConsumed",totalConsumed,"2")
   
   if(document.getElementById('postfacebook').checked) {
-    var beverageUrl = "http://isober.chaosserver.net/drink.php";
-    if (drinktype == "beer") {
-      beverageUrl += "?drinktype=beer";
-    } else if (drinktype == "wine") {
-      beverageUrl += "?drinktype=wine";
-    } else if (drinktype == "shot") {
-      beverageUrl += "?drinktype=shot";
-    } else {
-      beverageUrl += "?drinktype=booze";
-    }  
-
-    if(!isBlank(drinkname)) {
-      beverageUrl += "&drinkname=" + encodeURIComponent(drinkname);
-    }
-
-    FB.api('/me/isoberapp:drink',
-      'post', 
-      { beverage : beverageUrl },
-      function(response) {});
+	beverageShare = getDrinkMessage();
+    FB.api('/me/feed', 'post', { message: beverageShare }, function(response) {});
   }
   
   updateElements();
   return false;
+}
+
+function getDrinkMessage() {
+    var drinktype = document.getElementById('drinktype').value;
+    var drinkname = document.getElementById('customdrinkname').value;
+
+    var beverageShare = "I'm enjoying ";
+
+    if (drinktype == "beer") {
+      if(isBlank(drinkname)) {
+        beverageShare += "glass of beer.";
+      } else {
+        beverageShare += "glass of " + drinkname + " beer.";
+      }
+    } else if (drinktype == "wine") {
+      if(isBlank(drinkname)) {
+        beverageShare += "glass of wine.";
+      } else {
+        beverageShare += "glass of " + drinkname + " wine.";
+      }
+    } else if (drinktype == "shot") {
+      if(isBlank(drinkname)) {
+        beverageShare += "a shot.";
+      } else {
+        beverageShare += "shot of " + drinkname + ".";
+      }
+    } else {
+	    if(isBlank(drinkname)) {
+	      beverageShare += "booze."
+	    } else {
+	      beverageShare += drinkname + ".";
+	    }
+    }
+    
+    return beverageShare;	
 }
 
 function getDrinkValueAmount() {
@@ -187,6 +206,7 @@ function adddrink() {
   var drinkvalue = document.getElementById('customdrink').value;
   var drinktype = document.getElementById('drinktype').value;
   var drinkname = document.getElementById('customdrinkname').value;
+
   drink(parseFloat(drinkvalue), drinktype, drinkname); 
   return false;
 }
@@ -226,6 +246,18 @@ function toggleHide(divname) {
 	} else {
 		document.getElementById(divname).style.visibility = 'none';
 	}
+}
+
+function facebookAuthChange(response) {
+  if(response.status == "connected") {
+    authToken = response.authResponse.accessToken;
+    
+    document.getElementById("photoform").action="https://graph.facebook.com/me/photos?access_token="+authToken;
+  }
+}
+
+function updatePhotoMessage() {
+	document.getElementById("photomessage").value=getDrinkMessage();
 }
 
 function togglePostFacebook() {
