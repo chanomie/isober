@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>iSober - Configure</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no" />
+    <script type="text/javascript" src="js/range.js"></script>
+    <script type="text/javascript" src="js/timer.js"></script>
+    <script type="text/javascript" src="js/slider.js"></script>
+    <link type="text/css" rel="StyleSheet" href="css/bluecurve/bluecurve.css" />
+	<link rel="stylesheet" href="iPhoneButtons.css" />
+	<link rel="stylesheet" href="RoundRectangle.css" />
+	<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+	<script type="text/javascript" src="isober.js"></script>
+  </head>
+  <body onload="onloadConfigure();">
+    <p><a class="blackLeft button" href="index.html">Get iSober</a></p>	
+    <div id="configdiv">
+      <ul class="rounded">
+        <li>
+          <table>
+            <tr>
+              <td><span style="font-size:12px;">Sbr@:</span></td>
+              <td>
+                <div class="slider" id="bac-slider">
+                  <input class="slider-input" id="bac-slider-input" name="bac-slider-input" />
+                </div>
+              </td>
+              <td>
+                <input type="text" id="bac-text-input" name="bac-text-input" disabled="disabled" size="4"/>
+              </td>
+            </tr>
+            <tr>
+              <td><span style="font-size:12px;">Wgt:</span></td>
+              <td>
+                <div class="slider" id="weight-slider">
+                  <input class="slider-input" id="weight-slider-input" name="weight-slider-input" />
+                </div>
+              </td>
+              <td>
+                <input type="text" id="weight-text-input" name="weight-text-input" disabled="disabled" size="4"/>
+              </td>
+            </tr>
+          </table>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+CACHE MANIFEST
+# This is a comment.
+# Cache manifest version 0.0.7
+# If you change the version number in this comment,
+# the cache manifest is no longer byte-for-byte
+# identical.
+apple-touch-icon.png
+css/bluecurve/bluecurve.css
+css/bluecurve/handle.horizontal.backup.png
+css/bluecurve/handle.horizontal.png
+css/bluecurve/handle.vertical.png
+css/bluecurve/horizontal.gif
+css/bluecurve/vertical.gif
+css/boxsizing.htc
+css/luna/handle.horizontal.hover.png
+css/luna/handle.horizontal.png
+css/luna/handle.vertical.hover.png
+css/luna/handle.vertical.png
+css/luna/luna.css
+css/swing/handle.horizontal.png
+css/swing/handle.vertical.png
+css/swing/swing.css
+css/winclassic.css
+help.html
+images/blueButton.png
+images/chevron.png
+images/grayButton.png
+images/leftButton.png
+images/rightButton.png
+images/whiteButton.png
+index.html
+iPhoneButtons.css
+isober.css
+isober.js
+js/range.js
+js/slider.js
+js/timer.js
+RoundRectangle.css
+winclassic.css
+debug-offline.js

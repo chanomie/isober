@@ -1,0 +1,9 @@
+div.popup {
+  position:absolute;
+  left:10px;
+  top:10px;
+  height:100%;
+  z-index:1;
+  background-color:rgb(197,204,211);
+  -webkit-box-shadow: 0px 5px #000000;
+}

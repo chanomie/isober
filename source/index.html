@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"
+      xmlns:fb="http://ogp.me/ns/fb#">
+      
+  <!--manifest="isober.manifest"-->
+  <head>
+    <title>iSober</title>
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	  <meta name="viewport" content="width=device-width, user-scalable=no" />
+	  <link rel="stylesheet" href="css/isober.css" />
+	  <link rel="stylesheet" href="css/iPhoneButtons.css" />
+      <link rel="stylesheet" href="css/RoundRectangle.css" />
+      <link type="text/css" rel="StyleSheet" href="css/bluecurve/bluecurve.css" />
+	  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+      <script type="text/javascript" src="js/range.js"></script>
+      <script type="text/javascript" src="js/timer.js"></script>
+      <script type="text/javascript" src="js/slider.js"></script>
+	  <script type="text/javascript" src="js/isober.js"></script>
+      <!-- script type="text/javascript" src="js/debug-offline.js"></script -->
+  </head>
+  <body onload="onloadIndex();">
+      <div id="fb-root"></div>
+      
+      <!-- FB Like Button -->
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '485749798118743', // App ID
+            channelUrl : 'http://isober.chaosserver.net/channel.html',
+            status     : true, // check login status
+            cookie     : true, // enable cookies to allow the server to access the session
+            xfbml      : true  // parse XFBML
+          });
+        };
+    
+       (function(d, s, id) {
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) return;
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=485749798118743";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+      </script>
+      
+      <!-- FB Authorize -->
+      
+  	  <p><a class="white button" style="line-height: 46px;" href="#" onclick="updateElements();"><span id="minutesLeft">&nbsp;</span></a></p>
+  	  <hr />
+      <h1>Staples</h1>
+       <ul class="rounded">	
+         <li><a onclick="drink(1,'beer');" href="#">Beer</a></li>
+         <li><a onclick="drink(1,'wine');" href="#">Wine</a></li>
+         <li><a onclick="drink(1,'shot');" href="#">Shot</a></li>
+         <li><a href="#" onclick="document.getElementById('drinkother').style.display = ''; return false;">Other... <span class="showArrow secondaryWArrow">drink</span></a></li>
+	    </ul>
+	    
+	    <p><a class="blackRight button" href="#" onclick="document.getElementById('facebook').style.visibility = ''; return false;">Facebook</a></p>
+	    <p><a class="blackRight button" href="#" onclick="document.getElementById('configure').style.visibility = ''; return false;">Configure</a></p>
+	    <p><a class="blackRight button" href="help.html">Help</a></p>
+	    <p><a class="blackRight button" href="#" onclick="document.getElementById('debugfields').style.display = ''; return false;">Debug</a></p>
+
+	    <div id="drinkother" class="popup" style="display: none;">
+	      <ul class="rounded" style="height: 300px;"><li>
+          <p><a class="blackLeft button" href="#" onclick="document.getElementById('drinkother').style.display = 'none';">Back</a></p>
+          <form id="drinkform" name="drinkform" action="#">
+            <div>
+              <select name="drinkamount" id="customdrink" style='font-size: 20px; width:100%'>
+                <option value="0.5">Half Drink (0.5 oz)</option>
+                <option value="1" selected="selected">One Drink (1 oz)</option>
+                <option value="1.5">Jigger (1.5 oz)</option>
+                <option value="2">Double (2 oz)</option>
+                <option value="-0.5">Undrink (-0.5)</option>
+              </select>
+            </div>
+            <div>
+              <select name="drinktype" id="drinktype" style='font-size: 20px; width:100%'>
+                <option value="booze" selected="selected">Booze</option>
+                <option value="beer">Beer</option>
+                <option value="wine">Wine</option>
+                <option value="Shot">Shot</option>
+              </select>
+            </div>
+            <div>
+              <span>Drink Name:</span><br />
+              <input type="text" name="customdrinkname" id="customdrinkname" style='font-size: 20px; width:90%' />
+            </div>
+	        <p><a class="blue button" href="#" onclick="adddrink();document.getElementById('drinkother').style.display = 'none'">Drink!</a></p>
+          </form>
+          </li></ul>
+        </div>
+        
+        <div id="facebook" class="popup" style="visibility: hidden;">
+          <p><a class="blackLeft button" href="#" onclick="document.getElementById('facebook').style.visibility = 'hidden'">Get iSober</a></p>	
+          <ul class="rounded"><li>
+            <fb:activity site="isober.chaosserver.net" app_id="485749798118743" action="isoberapp:drink" width="280" height="200" header="true" recommendations="false"></fb:activity>
+          </li><li>
+            <fb:like href="http://isober.chaosserver.net" send="false" width="300" show_faces="true" font="verdana"></fb:like>
+          </li><li>
+          <fb:login-button show-faces="true" width="300" max-rows="20" scope="publish_actions"></fb:login-button>
+          </li><li>
+            <form id="facebookform" name="facebookform" action="#">
+              <a class="blue" onclick="togglePostFacebook(); saveFacebook();" href="#">
+                <input type="checkbox" name="postfacebook" id="postfacebook" onclick="saveFacebook();"/>
+                Post drinks to Facebook
+              </a>
+            </form>
+          </li></ul>
+        </div>
+        
+        <div id="configure" class="popup" style="visibility: hidden;">
+          <p><a class="blackLeft button" href="#" onclick="document.getElementById('configure').style.visibility = 'hidden'">Get iSober</a></p>	
+          <div id="configdiv">
+            <ul class="rounded">
+              <li>
+                <table>
+                  <tr>
+                    <td><span style="font-size:12px;">Sbr@:</span></td>
+                    <td>
+                      <div class="slider" id="bac-slider">
+                        <input class="slider-input" id="bac-slider-input" name="bac-slider-input" />
+                      </div>
+                    </td>
+                    <td>
+                      <input type="text" id="bac-text-input" name="bac-text-input" disabled="disabled" size="4"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span style="font-size:12px;">Wgt:</span></td>
+                    <td>
+                      <div class="slider" id="weight-slider">
+                        <input class="slider-input" id="weight-slider-input" name="weight-slider-input" />
+                      </div>
+                    </td>
+                    <td>
+                      <input type="text" id="weight-text-input" name="weight-text-input" disabled="disabled" size="4"/>
+                    </td>
+                  </tr>
+                </table>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
+	    <div id="debugfields" class="popup" style="display: none;">
+          <ul class="rounded"><li>
+	        <p>Drink Value Amount: <span id="drinkValueAmount">0</span></p>
+	        <p>Total Consumed: <span id="totalConsumed">0</span></p>
+	        <p>BAC: <span id="bac">0</span></p>
+	        <p>Start Time: <span id="startTime">Not Started</span></p>
+	        <p>Total Minutes To Sober: <span id="totalMinutesForSobriety">0</span></p>
+	        <p>Elapsed Minutes: <span id="elapsedMinutes">0</span></p>
+	        <p>Remaining Minutes: <span id="remainingMinutes">0</span></p>
+	        <p><a class="blue button" href="#" onclick="document.getElementById('debugfields').style.display = 'none'">Close</a></p>
+	        <p><a class="blue button" href="#" onclick="sober();">I'm Sober!</a></p>
+	      </li></ul>
+	    </div>
+  </body>
+</html>
