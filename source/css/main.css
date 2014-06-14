@@ -1,0 +1,775 @@
+/*
+ * HTML5 Boilerplate
+ *
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/*
+-apple-system-body
+-apple-system-caption1
+-apple-system-caption2
+-apple-system-footnote
+-apple-system-headline
+
+*/
+ 
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+div.firsttime {
+	position:absolute;
+	top: 35;
+	left: 0;
+	width: 100%;
+}
+
+div.firsttime span {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+a {
+    color: #00e;
+}
+
+a:visited {
+    color: #551a8b;
+}
+
+a:hover {
+    color: #06e;
+}
+
+/*
+ * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
+ */
+
+img {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+div.page {
+	/* min-height: 460px; */
+	margin-top: 44px;	
+}
+
+/*
+div#spinner {
+    position:fixed;
+	height: 100%;
+	width: 100%;
+	top:0px;
+    left:0px;
+    background: rgba(0, 0, 0, .5);
+}
+*/
+
+div#spinner {
+    position:fixed;
+	width: 15%;
+	height: 15%;
+	bottom:0px;
+    right:0px;
+}
+
+div#addtohome {
+    z-index: 900;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+}
+
+div#addtohomemessage {
+    text-align: center;
+    padding: 10px;
+    border-radius: 15px;
+	border: 1px gray solid;
+	margin: auto;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FBF2AC), color-stop(1, #F3DB82));
+	box-shadow: 0 1px 1px #ddd, 0 1px 1px #555;
+	width: 214px;
+}
+
+div#addtohomemessage .close {
+    z-index: 1000;
+    float: right;
+    margin-top: -10px;
+    margin-right: -5px;
+}
+
+div#addtohomemessage .appicon {
+	height: 55px;
+	margin-bottom: 10px;
+}
+
+
+div.header {
+	background-color: #F7F7F7;
+	background: -webkit-linear-gradient(270deg, rgba(247,247,247,0.91), rgba(247,247,247,0.91));
+    
+    border-bottom: 1px solid #A7A7AA;
+	position: fixed;
+    z-index: 900;
+	top: 0;
+	width: 100%; 
+	height: 44px;
+}
+
+div.header div.title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14pt;
+
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: black;
+    font-weight: 300; 
+    text-align: center;
+	margin-right: 50px;
+	margin-left: 50px;    
+}
+
+div.rightheaderbutton {
+	float: right;
+	color: #007AFF;
+    font-family: 'Open Sans', sans-serif;
+    height: 24px;
+    min-width: 24px;
+    border-radius:3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 10px;
+    margin-right: 5px;
+    text-align: center;
+}
+
+div.rightheaderbuttonblue {
+	float: right;
+	color: #007AFF;
+    font-family: 'Open Sans', sans-serif;
+    height: 24px;
+    min-width: 24px;
+    border-radius:3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 10px;
+    margin-right: 5px;
+    text-align: center;
+}
+
+div.leftheaderbutton {
+	float: left;
+	color: #007AFF;
+    font-family: 'Open Sans', sans-serif;
+    height: 24px;
+    min-width: 24px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius:3px;
+    margin-top: 10px;
+    margin-left: 5px;
+    text-align: center;
+}
+
+div.bold {
+  font-weight: 800; 
+  font-size: 14pt;
+}
+
+div#unwatchedShowList {
+  margin-top: 2px;
+  padding-bottom: 20px;
+}
+
+div.showlist {
+	margin: auto;
+}
+
+div#adbar {
+	margin-top: -10px;
+	border-top: solid 
+	gray 1px;
+	padding-top: 20px;
+}
+
+div.help {
+    position: fixed;
+    top: 45px;
+    width: 100%;
+    z-index: 900;
+	font-family: 'The Girl Next Door', cursive;
+}
+
+div.help div.rightheader {
+	position: fixed;
+	top: 48px;
+	right: 10px;
+	float: right;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FBF2AC), color-stop(1, #F3DB82));
+	box-shadow: 5px 5px 5px #888888;
+	padding: 10px;
+}
+
+div.rightheader div.helptext {
+	padding-right: 15px;
+}
+
+
+div.help div.leftheader {
+	position: fixed;
+	top: 48px;
+	left: 10px;
+	float: left;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FBF2AC), color-stop(1, #F3DB82));
+	box-shadow: 5px 5px 5px #888888;
+	padding: 10px;
+}
+
+div.leftheader div.helptext {
+	padding-left: 20px;
+}
+
+div.help div.centerhelp {
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 150%;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FBF2AC), color-stop(1, #F3DB82));
+	box-shadow: 5px 5px 5px #888888;
+	padding: 10px;
+
+}
+
+
+form#addshowform {
+    padding-top: 10px;
+    padding-bottom: 10px;
+	text-align: center;
+	background-color: #EFEFF4;
+	border-bottom: 1px solid black;
+}
+
+form#addshowform i {
+	color: #B0B0B0;
+}
+
+input#searchtext {
+	width: 80%;
+	margin-left: -15px;
+	padding-left: 30px;
+	border-radius: 5px;
+	border: 1px solid darkgray;
+}
+
+.icon-search {
+	position: relative; 
+	left:10px;
+}
+
+div.seriesrow {
+	width: 100%;
+	height: 50px;
+	border-bottom: 1px solid #B2B2B2;
+}
+
+div.showname {
+	margin-left: 10px;
+}
+
+div.originaldate {
+	margin-left: 10px;
+	font-size: 10px;
+	color: #B2B2B2;
+}
+
+div.rightarrow {
+  position: relative;
+  top: -22px;
+  right: 20px;
+  float: right;
+  font-weight: 800;
+}
+
+div.bannerdiv {
+	text-align: center;
+}
+
+div.overview {
+	padding-right:10px;
+	padding-left: 10px;
+}
+
+img.bannerimage {
+	max-width: 100%;
+}
+
+img.showbanner {
+	min-height: 59px;
+}
+
+
+div.showtitle {
+	text-align: center;
+	font-size: 24px;
+}
+
+div.firstaired {
+	text-align: center;
+	font-size: 10px;
+	padding-left: 10px;
+	padding-right:10px;	
+}
+
+div.showlist {
+	text-align: center;
+	max-width: 760px;
+}
+
+div.show {
+	width: 100%;
+}
+
+div.played {
+	opacity: 0.2;
+}
+
+div.listbannerimage {
+	overflow: hidden;
+}
+
+div.seasonepisode {
+	font-size: 14px;
+	display:inline;
+}
+
+span.episodeFirstAired {
+    font-size: 14px;
+}
+
+span.episodeFirstAired:before {
+	content: ", ";
+}
+
+
+div.showtext {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+  font-size: 18px;
+}
+
+span.episodetitle {
+    display:block;
+	clear:both;
+}
+
+div.buttonRow {
+    position: relative;
+    font-size: 28px;
+    letter-spacing: 18px;
+    text-align: center;
+    
+}
+
+div.buttonrow i {
+	margin-left: 50px;
+}
+
+div.episodeSummary {
+	font-size: 10px;
+}
+
+div#settingspage {
+  background-color: #DADDE2;
+
+}
+
+div#settingspage div.content {
+	display:inline-block;
+	text-align: center;
+	width: 100%;
+	text-align: left;
+}
+
+div.season {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+div.seasonbar {
+    font-size: 24px;
+    font-weight:light;
+	text-transform: uppercase;
+    color: #A0A0A0;
+    background-color: #DADDE2;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+i.seasonexpander {
+	float: right;
+	padding-top: 2px;
+}
+
+div.seasonbuttons {
+  float: right;
+  letter-spacing: 10pt;
+}
+
+div.episodelist {
+	font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom: solid darkgrey 1px;
+    min-height: 40px;
+}
+
+div.episodelistbuttons {
+	float: right;
+	font-size: 24px;
+    letter-spacing: 10pt;
+}
+
+div.episodelistdetail {
+	font-size: 12px;
+}
+
+#simplemodal-overlay {
+	background-color:#000;
+	-webkit-filter: blur(20px);
+}
+
+div.pagemodal {
+    background: white;
+	text-align: center;
+	border: solid darkgrey 1px;
+	padding-top: 10px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	border-radius:10px;
+}
+
+div.modaltitle {
+	font-size: 24px;
+	top: 5px;
+	left: 0px;
+	width: 100%;
+}
+
+div.modaltext {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+div.modalbuttons {
+	border-top: 1px solid lightgrey;
+    text-align: center;
+    margin-top: 20px;
+    color: #007AFF;
+}
+
+div.leftmodalbutton {
+	float: left;
+	border-right: 1px solid lightgrey;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	display: inline-block;
+	width: 50%;	
+}
+
+div.rightmodalbutton {
+	display: inline-block;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 49%;
+}
+
+/* Table View */
+div.tbHeader {
+	text-shadow:0px 1px 0px rgba(255, 255, 255, 0.75);
+	margin:15px 10px 7px 10px;
+	font-weight:light;
+	color: #A0A0A0;
+	text-transform: uppercase;
+}
+
+ul.tableView {
+	list-style-type:none;
+	font-size:16px;
+	padding:0;
+	background-color: rgb(247, 247, 247);
+	border-top:1px solid #B2B4B8;
+	border-bottom:1px solid #B2B4B8;
+}
+
+ul.tableView li {
+	background-color:#F7F7F7;
+	padding: 10px;
+	margin-left: 40px;
+	color:black;
+	border-bottom:1px solid #B2B4B8;
+}
+
+ul.tableView li b {
+	font-weight: normal;
+}
+
+ul.tableView li b i {
+	font-size: 120%;
+	margin-left: -38px;
+	padding-right: 14px;
+}
+
+ul.tableView li span.subtitle {
+  float: right;
+  color:#B2B2B2;
+  margin-right: 4px;
+}
+
+
+ul.tableView li:first-of-type {
+
+}
+
+ul.tableView li:last-of-type {
+	border-bottom: none;
+}
+
+ul.tableView li:only-of-type {
+}
+
+select.settingsselect {
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	-webkit-appearance: none;
+	text-align: right;
+	direction: rtl;
+	color:#B2B2B2;
+}
+
+i.icon-chevron-right {
+	color:#B2B2B2;
+}
+
+div.about div.content {
+	padding-left: 10px;
+}
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/* Prevent callout */
+
+.nocallout {
+    -webkit-touch-callout: none;
+}
+
+.pressed {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* A hack for HTML5 contenteditable attribute on mobile */
+
+textarea[contenteditable] {
+    -webkit-appearance: none;
+}
+
+/* A workaround for S60 3.x and 5.0 devices which do not animated gif images if
+   they have been set as display: none */
+
+.gifhidden {
+    position: absolute;
+    left: -100%;
+}
+
+/*
+ * Image replacement
+ */
+
+.ir {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 0;
+    direction: ltr;
+    display: block;
+    overflow: hidden;
+    text-align: left;
+    text-indent: -999em;
+}
+
+.ir br {
+    display: none;
+}
+
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/**
+ * Clearfix helper
+ * Used to contain floats: h5bp.com/q
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   Theses examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (max-width: 758px) {
+  img.showbanner {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 760px) {
+	div.showlist {
+		border-left: 1px gray solid;
+		border-right: 1px gray solid;
+	}
+}
+
+@media only screen and (min-width: 825px) {
+	div.centerhelp {
+		margin-top: 20px;
+		width: 40%;
+	}
+	div.help div.rightheader {
+	    width: 25%;
+	}
+	div.help div.leftheader {
+	    width: 25%;
+	}
+}
+@media only screen and (max-width: 825px) {
+	div.centerhelp {
+		margin-top: 190px;
+		width: 80%;
+	}
+	div.help div.rightheader {
+	    width: 40%;
+	}
+	div.help div.leftheader {
+	    width: 40%;
+	}
+}
+
+	
+
+
+
+@media only screen and (min-width: 800px) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 144dpi) {
+    /* Style adjustments for viewports that meet the condition */
+}
