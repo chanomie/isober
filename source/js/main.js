@@ -50,9 +50,7 @@ $(document).ready(function() {
 	});
 	
 	// Clicking Facebook will enable/authenticate Facebook
-	$("#facebooktoggle").click(function() {
-	  alert("facebooktoggle");
-	});
+	$("#facebooktoggle").click(checkAndTogglePostFacebook);
 	
 	$("#otherdrinkbutton").click(otherDrink)
 	$(".drinkchoice").click(selectDrink)
@@ -99,7 +97,7 @@ $(document).ready(function() {
 });
 
 var totalConsumed = 0;
-var startTime;
+var startTime = new Date();
 var authToken;
 
 // Configurations
@@ -142,11 +140,6 @@ function loadSessionValues() {
   } else {
   	localStorage.removeItem("startTime");
   	localStorage.removeItem("totalConsumed");
-  }
-  
-  var facebookstate = localStorage.getItem("facebookstate");
-  if(facebookstate) {
-    // document.getElementById('postfacebook').checked = facebookstate;
   }
 }
 
@@ -266,13 +259,13 @@ function updateElements() {
     }
   }
 
-  document.getElementById('totalConsumed').innerHTML = "" + totalConsumed;
-  document.getElementById('drinkValueAmount').innerHTML = "" + getDrinkValueAmount();
-  document.getElementById('startTime').innerHTML = "" + startTime;
-  document.getElementById('totalMinutesForSobriety').innerHTML = "" + getTotalMinutesForSobriety(totalConsumed, sobrietyLevel);
-  document.getElementById('elapsedMinutes').innerHTML = "" + getElapsedMinutes(startTime);
-  document.getElementById('remainingMinutes').innerHTML = "" + remainingMinutes;
-  document.getElementById('bac').innerHTML = "" + getBAC(totalConsumed, startTime);
+  $('#totalConsumed').html(_.isEmpty(totalConsumed) ? "" : totalConsumed);
+  $('#drinkValueAmount').html(_.isEmpty(getDrinkValueAmount()) ? "" : getDrinkValueAmount());
+  $('#startTime').html(_.isEmpty(startTime) || _.isUndefined(startTime) ? "" : startTime.toLocaleTimeString());
+  $('#totalMinutesForSobriety').html(_.isEmpty(getTotalMinutesForSobriety(totalConsumed, sobrietyLevel)) ? "" : getTotalMinutesForSobriety(totalConsumed, sobrietyLevel));
+  $('#elapsedMinutes').html(_.isEmpty(getElapsedMinutes(startTime)) ? "" : getElapsedMinutes(startTime));
+  $('#remainingMinutes').html(_.isEmpty(remainingMinutes) ? "" : remainingMinutes);
+  $('#bac').html(_.isEmpty(getBAC(totalConsumed, startTime)) ? "" : getBAC(totalConsumed, startTime));
 }
 
 function selectDrink() {
@@ -304,9 +297,9 @@ function backgroundUpdate() {
 function facebookAuthChange(response) {
   if(response.status == "connected") {
     authToken = response.authResponse.accessToken;
-    $("#facebooktoggle").removeClass("facebookoff");
-    $("#facebooktoggle").addClass("facebookon");
-    document.getElementById("photoform").action="https://graph.facebook.com/me/photos?access_token="+authToken;
+    // document.getElementById("photoform").action="https://graph.facebook.com/me/photos?access_token="+authToken;
+    console.log("Need to set auth");
+    
   } else {
     $("#facebooktoggle").addClass("facebookoff");
     $("#facebooktoggle").removeClass("facebookon");
@@ -317,18 +310,31 @@ function updatePhotoMessage() {
 	document.getElementById("photomessage").value=getDrinkMessage();
 }
 
-function togglePostFacebook() {
-  if(document.getElementById('postfacebook').checked == true) {
-    document.getElementById('postfacebook').checked = false;
-  } else {
-    document.getElementById('postfacebook').checked = true;  
-  }
+function checkAndTogglePostFacebook() {
+  // Check if Facebook is authorized.
+  FB.getLoginStatus(function(response) {
+    if (response.status === 'connected') {
+      var accessToken = response.authResponse.accessToken;
+      // document.getElementById("photoform").action="https://graph.facebook.com/me/photos?access_token="+authToken;
+      console.log("Need to set auth");
 
-  saveFacebook();
+    } else {
+	  // Not logged in - so need to ask
+	  console.log("Not logged in.");
+    }
+  });
 }
 
-function saveFacebook() {
-  localStorage.setItem("facebookstate", document.getElementById('postfacebook').checked);
+function togglePostFacebook() {
+	var facebookstate = localStorage.getItem("facebookstate");
+    if(facebookstate) {
+	    $("#facebooktoggle").removeClass("facebookoff");
+	    $("#facebooktoggle").addClass("facebookon");
+    } else {
+	    $("#facebooktoggle").addClass("facebookoff");
+	    $("#facebooktoggle").removeClass("facebookon");
+    }
+	localStorage.setItem("facebookstate", !facebookstate);
 }
 
 function isBlank(str) {

@@ -217,22 +217,6 @@ div.bold {
   font-size: 14pt;
 }
 
-div#unwatchedShowList {
-  margin-top: 2px;
-  padding-bottom: 20px;
-}
-
-div.showlist {
-	margin: auto;
-}
-
-div#adbar {
-	margin-top: -10px;
-	border-top: solid 
-	gray 1px;
-	padding-top: 20px;
-}
-
 div.help {
     position: fixed;
     top: 45px;
@@ -280,146 +264,6 @@ div.help div.centerhelp {
 
 }
 
-
-form#addshowform {
-    padding-top: 10px;
-    padding-bottom: 10px;
-	text-align: center;
-	background-color: #EFEFF4;
-	border-bottom: 1px solid black;
-}
-
-form#addshowform i {
-	color: #B0B0B0;
-}
-
-input#searchtext {
-	width: 80%;
-	margin-left: -15px;
-	padding-left: 30px;
-	border-radius: 5px;
-	border: 1px solid darkgray;
-}
-
-.icon-search {
-	position: relative; 
-	left:10px;
-}
-
-div.seriesrow {
-	width: 100%;
-	height: 50px;
-	border-bottom: 1px solid #B2B2B2;
-}
-
-div.showname {
-	margin-left: 10px;
-}
-
-div.originaldate {
-	margin-left: 10px;
-	font-size: 10px;
-	color: #B2B2B2;
-}
-
-div.rightarrow {
-  position: relative;
-  top: -22px;
-  right: 20px;
-  float: right;
-  font-weight: 800;
-}
-
-div.bannerdiv {
-	text-align: center;
-}
-
-div.overview {
-	padding-right:10px;
-	padding-left: 10px;
-}
-
-img.bannerimage {
-	max-width: 100%;
-}
-
-img.showbanner {
-	min-height: 59px;
-}
-
-
-div.showtitle {
-	text-align: center;
-	font-size: 24px;
-}
-
-div.firstaired {
-	text-align: center;
-	font-size: 10px;
-	padding-left: 10px;
-	padding-right:10px;	
-}
-
-div.showlist {
-	text-align: center;
-	max-width: 760px;
-}
-
-div.show {
-	width: 100%;
-}
-
-div.played {
-	opacity: 0.2;
-}
-
-div.listbannerimage {
-	overflow: hidden;
-}
-
-div.seasonepisode {
-	font-size: 14px;
-	display:inline;
-}
-
-span.episodeFirstAired {
-    font-size: 14px;
-}
-
-span.episodeFirstAired:before {
-	content: ", ";
-}
-
-
-div.showtext {
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  text-align: left;
-  font-size: 18px;
-}
-
-span.episodetitle {
-    display:block;
-	clear:both;
-}
-
-div.buttonRow {
-    position: relative;
-    font-size: 28px;
-    letter-spacing: 18px;
-    text-align: center;
-    
-}
-
-div.buttonrow i {
-	margin-left: 50px;
-}
-
-div.episodeSummary {
-	font-size: 10px;
-}
-
 div#settingspage {
   background-color: #DADDE2;
 
@@ -430,49 +274,6 @@ div#settingspage div.content {
 	text-align: center;
 	width: 100%;
 	text-align: left;
-}
-
-div.season {
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-div.seasonbar {
-    font-size: 24px;
-    font-weight:light;
-	text-transform: uppercase;
-    color: #A0A0A0;
-    background-color: #DADDE2;
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
-i.seasonexpander {
-	float: right;
-	padding-top: 2px;
-}
-
-div.seasonbuttons {
-  float: right;
-  letter-spacing: 10pt;
-}
-
-div.episodelist {
-	font-size: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-bottom: solid darkgrey 1px;
-    min-height: 40px;
-}
-
-div.episodelistbuttons {
-	float: right;
-	font-size: 24px;
-    letter-spacing: 10pt;
-}
-
-div.episodelistdetail {
-	font-size: 12px;
 }
 
 #simplemodal-overlay {
@@ -568,6 +369,13 @@ ul.tableView li span.subtitle {
   margin-right: 4px;
 }
 
+ul.tableView li input.textinput {
+	float: right;
+	width: 25%;
+	margin-top: -3px;
+}
+
+
 
 ul.tableView li:first-of-type {
 
@@ -598,6 +406,77 @@ div.about div.content {
 	padding-left: 10px;
 }
 
+html, body, {
+	height: 100%;
+}
+
+div.quad {
+	float: left;
+	width: 50%;
+	height: 230px;
+	line-height: 230px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+div.quad:nth-child(1) { 
+	font-size: 24px;
+	background-color: rgb(165,195,39)
+}
+div.quad:nth-child(2) { 
+	font-size: 100px;
+	background-color: rgb(247,105,32) 
+}
+div.quad:nth-child(3) {
+	font-size: 100px;
+	background-color: rgb(216,193,42)
+}
+div.quad:nth-child(4) {
+	font-size: 100px;
+    background-color: rgb(79,105,160)
+}
+div.facebookoff {
+	color: grey;
+}
+div.facebookon {
+	color: white;
+}
+
+div.drinktable {
+	width: 100%;
+	margin: auto;
+}
+
+div.drinkchoice {
+	display: inline-block;
+	width: 25%;
+	height: 100px;
+	line-height: 100px;
+	font-size: 24px;
+	text-align: center;
+}
+
+div.selectdrink {
+	background-color: #00D8CC;
+}
+
+div.bigbutton {
+	width: 100%;
+	text-align: center;
+	height: 100px;
+	line-height: 100px;
+	font-size: 24px;
+	color: #007AFF;
+}
+
+.clip {
+    overflow: hidden;
+    display: inline-block;
+}
+.l-half {
+    position: relative;
+    left: +50%;
+}
 
 /* ==========================================================================
    Helper classes
@@ -722,19 +601,6 @@ textarea[contenteditable] {
    Theses examples override the primary ('mobile first') styles.
    Modify as content requires.
    ========================================================================== */
-
-@media only screen and (max-width: 758px) {
-  img.showbanner {
-    width: 100%;
-  }
-}
-
-@media only screen and (min-width: 760px) {
-	div.showlist {
-		border-left: 1px gray solid;
-		border-right: 1px gray solid;
-	}
-}
 
 @media only screen and (min-width: 825px) {
 	div.centerhelp {

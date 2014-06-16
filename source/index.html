@@ -9,18 +9,17 @@
       <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	  <meta name="viewport" content="width=device-width, user-scalable=no" />
-	  <link rel="stylesheet" href="css/isober.css" />
-	  <link rel="stylesheet" href="css/iPhoneButtons.css" />
-      <link rel="stylesheet" href="css/RoundRectangle.css" />
-      <link type="text/css" rel="StyleSheet" href="css/bluecurve/bluecurve.css" />
+	  <link rel="stylesheet" href="css/normalize.css">
+	  <link rel="stylesheet" href="css/main.css" />
 	  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-      <script type="text/javascript" src="js/range.js"></script>
-      <script type="text/javascript" src="js/timer.js"></script>
-      <script type="text/javascript" src="js/slider.js"></script>
-	  <script type="text/javascript" src="js/isober.js"></script>
+	  <link href="css/font-awesome.min.css" rel="stylesheet">
+	  <!-- script data-main="js/app" src="js/require.js"></script -->
+      <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/underscore-min.js"></script>
+      <script type="text/javascript" src="js/main.js"></script>
       <!-- script type="text/javascript" src="js/debug-offline.js"></script -->
   </head>
-  <body onload="onloadIndex();">
+  <body>
       <div id="fb-root"></div>
       
       <!-- FB Like Button -->
@@ -41,133 +40,61 @@
          var js, fjs = d.getElementsByTagName(s)[0];
          if (d.getElementById(id)) return;
          js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=485749798118743";
+         js.src = "https://connect.facebook.net/en_US/all.js#xfbml=1&appId=485749798118743";
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
       </script>
-      
       <!-- FB Authorize -->
       
-  	  <p><a class="white button" style="line-height: 46px;" href="#" onclick="updateElements();"><span id="minutesLeft">&nbsp;</span></a></p>
-  	  <hr />
-      <h1>Staples</h1>
-       <ul class="rounded">	
-         <li><a onclick="drink(1,'beer');" href="#">Beer</a></li>
-         <li><a onclick="drink(1,'wine');" href="#">Wine</a></li>
-         <li><a onclick="drink(1,'shot');" href="#">Shot</a></li>
-         <li><a href="#" onclick="document.getElementById('drinkother').style.display = ''; return false;">Other... <span class="showArrow secondaryWArrow">drink</span></a></li>
-	    </ul>
-	    
-	    <p><a class="blackRight button" href="#" onclick="document.getElementById('facebook').style.visibility = ''; return false;">Facebook</a></p>
-	    <p><a class="blackRight button" href="#" onclick="document.getElementById('configure').style.visibility = ''; return false;">Configure</a></p>
-	    <p><a class="blackRight button" href="help.html">Help</a></p>
-	    <p><a class="blackRight button" href="#" onclick="document.getElementById('debugfields').style.display = ''; return false;">Debug</a></p>
-
-	    <div id="drinkother" class="popup" style="display: none;">
-	      <ul class="rounded"><li>
-          <p><a class="blackLeft button" href="#" onclick="document.getElementById('drinkother').style.display = 'none';">Back</a></p>
-          <form id="drinkform" name="drinkform" action="#">
-            <div>
-              <select name="drinkamount" id="customdrink" style='font-size: 20px; width:100%'>
-                <option value="0.5">Half Drink (0.5 oz)</option>
-                <option value="1" selected="selected">One Drink (1 oz)</option>
-                <option value="1.5">Jigger (1.5 oz)</option>
-                <option value="2">Double (2 oz)</option>
-                <option value="-0.5">Undrink (-0.5)</option>
-              </select>
-            </div>
-            <div>
-              <select name="drinktype" id="drinktype" style='font-size: 20px; width:100%'>
-                <option value="booze" selected="selected">Booze</option>
-                <option value="beer">Beer</option>
-                <option value="wine">Wine</option>
-                <option value="shot">Shot</option>
-              </select>
-            </div>
-            <div>
-              <span>Drink Name:</span><br />
-              <input type="text" name="customdrinkname" id="customdrinkname" style='font-size: 20px; width:90%' />
-            </div>
-	        <p><a class="blue button" href="#" onclick="adddrink();document.getElementById('drinkother').style.display = 'none'">Drink!</a></p>
-          </form>
-          <div>
-          	<form id="photoform" enctype="multipart/form-data" action="https://graph.facebook.com/me/photos?access_token=" onsubmit="adddrink();updatePhotoMessage();document.getElementById('drinkother').style.display = 'none'" method="POST" target="photoiframe">
-          		
-          		<input id="photomessage" name="message" type="hidden" value="is this the message?" />
-          		<input name="source" type="file" />
-          		<input id="photuploadbutton" class="blue button" type="submit" value="Upload"/>
-            	</form>
-            </div>
-          </li></ul>
+        <div id="mainpage" class="page">
+			<div class="header">
+				<div class="leftheaderbutton" id="settings"><i class="fa fa-cog"></i></div>
+	            <div class="title">iSober</div>
+			</div>
+			<div class="quadcontainer" style="height: 100%;">
+				<div class="quad" id="minutesLeft">Stone Code</div>
+				<div class="quad" id="onedrink"><i class="fa fa-glass"></i></div>
+				<div class="quad" id="otherdrink"><i class="fa fa-ellipsis-h"></i></div>
+				<div class="quad facebookoff" id="facebooktoggle"><i class="fa fa-facebook-square"></i></div>
+			</div>
         </div>
-        
-        <div id="facebook" class="popup" style="visibility: hidden;">
-          <p><a class="blackLeft button" href="#" onclick="document.getElementById('facebook').style.visibility = 'hidden'">Get iSober</a></p>	
-          <ul class="rounded"><li>
-            <fb:activity site="isober.chaosserver.net" app_id="485749798118743" width="280" height="200" header="true" recommendations="false"></fb:activity>
-          </li><li>
-            <fb:like href="http://isober.chaosserver.net" send="false" width="300" show_faces="true" font="verdana"></fb:like>
-          </li><li>
-	          <fb:login-button show-faces="true" width="300" max-rows="20" scope="publish_actions"></fb:login-button>
-          </li><li>
-            <form id="facebookform" name="facebookform" action="#">
-              <a class="blue" onclick="togglePostFacebook(); saveFacebook();" href="#">
-                <input type="checkbox" name="postfacebook" id="postfacebook" onclick="saveFacebook();"/>
-                Post drinks to Facebook
-              </a>
-            </form>
-          </li></ul>
+        <div id="customdrinkpage" class="page" style="display:none;">
+			<div class="header">
+	          <div class="rightheaderbuttonblue" id="customdone">Done</div>
+	            <div class="title">iSober</div>
+			</div>
+			<div class="drinktable"><!--
+				--><div class="drinkchoice" data-drinkbac="0.5"><span class="clip"><span class="l-half"><i class="fa fa-glass"></i></span></span></div><!--
+				--><div class="drinkchoice selectdrink" data-drinkbac="1"><i class="fa fa-glass"></i></div><!--
+				--><div class="drinkchoice" data-drinkbac="1.5"><i class="fa fa-glass"></i><span class="clip"><span class="l-half"><i class="fa fa-glass"></i></span></span></div><!--
+				--><div class="drinkchoice" data-drinkbac="2"><i class="fa fa-glass"></i><i class="fa fa-glass"></i></div><!--
+			--></div><!--
+            --><div>
+              <input type="text" name="customdrinkname" id="customdrinkname"  placeholder="Booze" style='font-size: 20px; width:100%; text-align: center; padding: 0px;' />
+            </div>
+            <div id="otherdrinkbutton" class="bigbutton">Drink</div>
         </div>
-        
-        <div id="configure" class="popup" style="visibility: hidden;">
-          <p><a class="blackLeft button" href="#" onclick="document.getElementById('configure').style.visibility = 'hidden'">Get iSober</a></p>	
-          <div id="configdiv">
-            <ul class="rounded">
-              <li>
-                <table>
-                  <tr>
-                    <td><span style="font-size:12px;">Sbr@:</span></td>
-                    <td>
-                      <div class="slider" id="bac-slider">
-                        <input class="slider-input" id="bac-slider-input" name="bac-slider-input" />
-                      </div>
-                    </td>
-                    <td>
-                      <input type="text" id="bac-text-input" name="bac-text-input" disabled="disabled" size="4"/>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><span style="font-size:12px;">Wgt:</span></td>
-                    <td>
-                      <div class="slider" id="weight-slider">
-                        <input class="slider-input" id="weight-slider-input" name="weight-slider-input" />
-                      </div>
-                    </td>
-                    <td>
-                      <input type="text" id="weight-text-input" name="weight-text-input" disabled="disabled" size="4"/>
-                    </td>
-                  </tr>
-                </table>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-
-	    <div id="debugfields" class="popup" style="display: none;">
-          <ul class="rounded"><li>
-	        <p>Drink Value Amount: <span id="drinkValueAmount">0</span></p>
-	        <p>Total Consumed: <span id="totalConsumed">0</span></p>
-	        <p>BAC: <span id="bac">0</span></p>
-	        <p>Start Time: <span id="startTime">Not Started</span></p>
-	        <p>Total Minutes To Sober: <span id="totalMinutesForSobriety">0</span></p>
-	        <p>Elapsed Minutes: <span id="elapsedMinutes">0</span></p>
-	        <p>Remaining Minutes: <span id="remainingMinutes">0</span></p>
-	        <p><a class="blue button" href="#" onclick="document.getElementById('debugfields').style.display = 'none'">Close</a></p>
-	        <p><a class="blue button" href="#" onclick="sober();">I'm Sober!</a></p>
-	      </li></ul>
-	    </div>
-	    
-	    <iframe width="0" id=”photoiframe” name="photoiframe" height="0" border="0" frameborder="0" scrolling="auto" align="center" hspace="0" vspace=""></iframe>
+		<div id="settingspage" class="page" style="display:none">
+			<div class="header">
+	          <div class="rightheaderbuttonblue" id="settingsdone">Done</div>
+	          <div class="title">Settings</div>
+			</div>
+			<div class="tbHeader">Sobriety</div>
+		    <ul class="tableView">
+				<li><b>Sober at</b><input class="textinput" name="sobrietyLevel" id="sobrietyLevel" /></li>
+				<li><b>Weight</b><input class="textinput" name="weight" id="weight" /></li>
+			</ul>
+			<div class="tbHeader">Debug</div>
+		    <ul class="tableView">
+				<li id="sober"><b>I'm Sober</b></li>
+				<li><b>Drink Value Amount</b><span class="subtitle" id="drinkValueAmount">0.5</span></li>
+				<li><b>Total Consumed</b><span class="subtitle" id="totalConsumed">160</span></li>
+				<li><b>BaC</b><span class="subtitle" id="bac">160</span></li>
+				<li><b>Start Time</b><span class="subtitle" id="startTime">160</span></li>
+				<li><b>Total Minutes To Sober</b><span class="subtitle" id="totalMinutesForSobriety">160</span></li>
+				<li><b>Elapsed Minutes</b><span class="subtitle" id="elapsedMinutes">160</span></li>
+				<li><b>Remaining Minutes</b><span class="subtitle" id="remainingMinutes">160</span></li>
+			</ul>
+		</div>
   </body>
 </html>
