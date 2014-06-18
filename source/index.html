@@ -21,31 +21,6 @@
   </head>
   <body>
       <div id="fb-root"></div>
-      
-      <!-- FB Like Button -->
-      <script>
-        window.fbAsyncInit = function() {
-          FB.init({
-            appId      : '485749798118743', // App ID
-            channelUrl : 'http://isober.chaosserver.net/channel.html',
-            status     : true, // check login status
-            cookie     : true, // enable cookies to allow the server to access the session
-            xfbml      : true  // parse XFBML
-          });
-          
-          FB.Event.subscribe('auth.authResponseChange', facebookAuthChange);
-        };
-    
-       (function(d, s, id) {
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) return;
-         js = d.createElement(s); js.id = id;
-         js.src = "https://connect.facebook.net/en_US/all.js#xfbml=1&appId=485749798118743";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-      </script>
-      <!-- FB Authorize -->
-      
         <div id="mainpage" class="page">
 			<div class="header">
 				<div class="leftheaderbutton" id="settings"><i class="fa fa-cog"></i></div>
@@ -84,16 +59,24 @@
 				<li><b>Sober at</b><input class="textinput" name="sobrietyLevel" id="sobrietyLevel" /></li>
 				<li><b>Weight</b><input class="textinput" name="weight" id="weight" /></li>
 			</ul>
+			<div class="tbHeader">Facebook</div>
+			<ul class="tableView">
+			    <li><b>
+				<div id="facebooklogin">
+                  <fb:login-button show-faces="true" max-rows="1" data-width="260" scope="publish_actions"></fb:login-button>
+				</div>
+			    </b></li>
+			</ul>
 			<div class="tbHeader">Debug</div>
 		    <ul class="tableView">
 				<li id="sober"><b>I'm Sober</b></li>
-				<li><b>Drink Value Amount</b><span class="subtitle" id="drinkValueAmount">0.5</span></li>
-				<li><b>Total Consumed</b><span class="subtitle" id="totalConsumed">160</span></li>
-				<li><b>BaC</b><span class="subtitle" id="bac">160</span></li>
-				<li><b>Start Time</b><span class="subtitle" id="startTime">160</span></li>
-				<li><b>Total Minutes To Sober</b><span class="subtitle" id="totalMinutesForSobriety">160</span></li>
-				<li><b>Elapsed Minutes</b><span class="subtitle" id="elapsedMinutes">160</span></li>
-				<li><b>Remaining Minutes</b><span class="subtitle" id="remainingMinutes">160</span></li>
+				<li><b>Drink Value Amount</b><span class="subtitle" id="drinkValueAmount">?</span></li>
+				<li><b>Total Consumed</b><span class="subtitle" id="totalConsumed">?</span></li>
+				<li><b>BaC</b><span class="subtitle" id="bac">?</span></li>
+				<li><b>Start Time</b><span class="subtitle" id="startTime">?</span></li>
+				<li><b>Total Minutes To Sober</b><span class="subtitle" id="totalMinutesForSobriety">?</span></li>
+				<li><b>Elapsed Minutes</b><span class="subtitle" id="elapsedMinutes">?</span></li>
+				<li><b>Remaining Minutes</b><span class="subtitle" id="remainingMinutes">?</span></li>
 			</ul>
 		</div>
   </body>
